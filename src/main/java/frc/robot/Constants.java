@@ -14,8 +14,8 @@ public final class Constants {
     public static final double stickDeadband = 0.1;
 
     public static final class Swerve {
-        public static final int pigeonID = 1;
-        public static final boolean invertGyro = false; // Always ensure Gyro is CCW+ CW-
+        public static final int pigeonID = 1; // TODO: Set pigeonID
+        public static final boolean invertGyro = false; // Always ensure Gyro is CCW+ CW-// TODO: Set to true/false
 
         public static final COTSFalconSwerveConstants chosenModule =  //TODO: This must be tuned to specific robot
             COTSFalconSwerveConstants.SDSMK4i(COTSFalconSwerveConstants.driveGearRatios.SDSMK4i_L2);
@@ -72,7 +72,7 @@ public final class Constants {
         public static final double driveKD = 0.0;
         public static final double driveKF = 0.0;
 
-        /* Drive Motor Characterization Values 
+        /* Drive Motor Characterization Values -
          * Divide SYSID values by 12 to convert from volts to percent output for CTRE */
         public static final double driveKS = (0.32 / 12); //TODO: This must be tuned to specific robot
         public static final double driveKV = (1.51 / 12);
