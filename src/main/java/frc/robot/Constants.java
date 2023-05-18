@@ -17,12 +17,13 @@ public final class Constants {
         public static final int pigeonID = 1; // TODO: Set pigeonID
         public static final boolean invertGyro = false; // Always ensure Gyro is CCW+ CW-// TODO: Set to true/false
 
+
         public static final COTSFalconSwerveConstants chosenModule =  //TODO: This must be tuned to specific robot
             COTSFalconSwerveConstants.SDSMK4i(COTSFalconSwerveConstants.driveGearRatios.SDSMK4i_L2);
 
         /* Drivetrain Constants */
-        public static final double trackWidth = Units.inchesToMeters(21.73); //TODO: This must be tuned to specific robot
-        public static final double wheelBase = Units.inchesToMeters(21.73); //TODO: This must be tuned to specific robot
+        public static final double trackWidth = Units.inchesToMeters(23.5); // Done, set value
+        public static final double wheelBase = Units.inchesToMeters(27.75); // Done, Set value
         public static final double wheelCircumference = chosenModule.wheelCircumference;
 
         /* Swerve Kinematics 
@@ -32,6 +33,8 @@ public final class Constants {
             new Translation2d(wheelBase / 2.0, -trackWidth / 2.0),
             new Translation2d(-wheelBase / 2.0, trackWidth / 2.0),
             new Translation2d(-wheelBase / 2.0, -trackWidth / 2.0));
+
+        // Most of these should be presets found in the COTS module
 
         /* Module Gear Ratios */
         public static final double driveGearRatio = chosenModule.driveGearRatio;
@@ -68,7 +71,7 @@ public final class Constants {
 
         /* Drive Motor PID Values */
         public static final double driveKP = 0.05; //TODO: This must be tuned to specific robot
-        public static final double driveKI = 0.0;
+        public static final double driveKI = 0.0; // Leave rest at 0.0
         public static final double driveKD = 0.0;
         public static final double driveKF = 0.0;
 
