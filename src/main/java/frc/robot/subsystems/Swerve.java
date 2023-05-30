@@ -10,10 +10,14 @@ import edu.wpi.first.math.kinematics.SwerveModulePosition;
 
 import com.ctre.phoenix.sensors.Pigeon2;
 
+
+
+import TrcCommonLib.trclib.TrcGyro;
 import edu.wpi.first.math.geometry.Pose2d;
 import edu.wpi.first.math.geometry.Rotation2d;
 import edu.wpi.first.math.geometry.Translation2d;
 import edu.wpi.first.math.kinematics.SwerveModuleState;
+import edu.wpi.first.wpilibj.SPI;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
@@ -21,18 +25,30 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 public class Swerve extends SubsystemBase {
     public SwerveDriveOdometry swerveOdometry;
     public SwerveModule[] mSwerveMods;
-    public Pigeon2 gyro;
+    //public Pigeon2 gyro;
+
+    public final TrcGyro gyro;
+ 
+    
+ 
 
     public Swerve() {
-        gyro = new Pigeon2(Constants.Swerve.pigeonID);
+
+        // TODO: Replace with NavX gyro
+        //gyro = new Pigeon2(Constants.Swerve.pigeonID);
+        gyro = new FrcAHRSGyro("NavX", SPI.Port.kMXP);
         gyro.configFactoryDefault();
         zeroGyro();
 
+        // TODO: Put these constants value into the robotParams
+
         mSwerveMods = new SwerveModule[] {
-            new SwerveModule(0, Constants.Swerve.Mod0.constants),
-            new SwerveModule(1, Constants.Swerve.Mod1.constants),
-            new SwerveModule(2, Constants.Swerve.Mod2.constants),
-            new SwerveModule(3, Constants.Swerve.Mod3.constants)
+
+            // This is the equal to CreateDriveMotor method in RobotDrive.java
+            new SwerveModule(0, Constants.Swerve.lfConsts.constants),
+            new SwerveModule(1, Constants.Swerve.rfConsts.constants),
+            new SwerveModule(2, Constants.Swerve.lbConsts.constants),
+            new SwerveModule(3, Constants.Swerve.rbConsts.constants)
         };
 
         /* By pausing init for a second before setting module offsets, we avoid a bug with inverting motors.
