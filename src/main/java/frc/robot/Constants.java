@@ -50,14 +50,14 @@ public final class Constants {
         // Need to set all these values
 
         /* Module Gear Ratios */
-        public static final double driveGearRatio = chosenModule.driveGearRatio; // TODO:
-        public static final double angleGearRatio = chosenModule.angleGearRatio; //TODO: 
+        public static final double driveGearRatio = (6/55); // Done, from drive gear ratio in email
+        public static final double angleGearRatio = (10.29/1); //Done, from steering ratio email
 
 
 
         /* Motor Inverts */
         public static final boolean angleMotorInvert = chosenModule.angleMotorInvert;// TODO
-        public static final boolean driveMotorInvert = chosenModule.driveMotorInvert; // TODO
+        public static final boolean driveMotorInvert = false; // Done, currently set to false on basis of instructions
 
 
 
@@ -89,7 +89,7 @@ public final class Constants {
 
 
         /* Angle Motor PID Values */
-        public static final double angleKP = chosenModule.angleKP;
+        public static final double angleKP = chosenModule.angleKP; // TODO: Set all these
         public static final double angleKI = chosenModule.angleKI;
         public static final double angleKD = chosenModule.angleKD;
         public static final double angleKF = chosenModule.angleKF;
