@@ -14,7 +14,7 @@ public final class Constants {
     public static final double stickDeadband = 0.1;
 
     public static final class Swerve {
-        public static final int pigeonID = 1; // TODO: Set to NavX
+        // public static final int pigeonID = 1; // Not needed
 
 
         public static final boolean invertGyro = true; // Always ensure Gyro is CCW+ CW-// TODO: Set to true/false
@@ -22,7 +22,7 @@ public final class Constants {
 
 
 
-        //public static final COTSFalconSwerveConstants chosenModule =  //TODO: This must be tuned to specific robot
+        //public static final COTSFalconSwerveConstants chosenModule =  
             //COTSFalconSwerveConstants.SDSMK4i(COTSFalconSwerveConstants.driveGearRatios.SDSMK4i_L2);
 
 
@@ -45,22 +45,24 @@ public final class Constants {
 
 
 
-        // Most of these should be presets found in the COTS module
+        
+
+        // Need to set all these values
 
         /* Module Gear Ratios */
-        public static final double driveGearRatio = chosenModule.driveGearRatio;
-        public static final double angleGearRatio = chosenModule.angleGearRatio;
+        public static final double driveGearRatio = chosenModule.driveGearRatio; // TODO:
+        public static final double angleGearRatio = chosenModule.angleGearRatio; //TODO: 
 
 
 
         /* Motor Inverts */
-        public static final boolean angleMotorInvert = chosenModule.angleMotorInvert;
-        public static final boolean driveMotorInvert = chosenModule.driveMotorInvert;
+        public static final boolean angleMotorInvert = chosenModule.angleMotorInvert;// TODO
+        public static final boolean driveMotorInvert = chosenModule.driveMotorInvert; // TODO
 
 
 
         /* Angle Encoder Invert */
-        public static final boolean canCoderInvert = chosenModule.canCoderInvert;
+        public static final boolean canCoderInvert = chosenModule.canCoderInvert; // TODO
 
 
 
