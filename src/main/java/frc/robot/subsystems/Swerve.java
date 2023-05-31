@@ -36,8 +36,10 @@ public class Swerve extends SubsystemBase {
 
         // TODO: Replace with NavX gyro
         //gyro = new Pigeon2(Constants.Swerve.pigeonID);
+        
         gyro = new FrcAHRSGyro("NavX", SPI.Port.kMXP);
-        gyro.configFactoryDefault();
+
+        //gyro.configFactoryDefault();
         zeroGyro();
 
         // TODO: Put these constants value into the robotParams

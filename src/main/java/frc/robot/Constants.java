@@ -7,17 +7,17 @@ import edu.wpi.first.math.geometry.Translation2d;
 import edu.wpi.first.math.kinematics.SwerveDriveKinematics;
 import edu.wpi.first.math.trajectory.TrapezoidProfile;
 import edu.wpi.first.math.util.Units;
-import frc.lib.util.COTSFalconSwerveConstants;
+// import frc.lib.util.COTSFalconSwerveConstants; Possibly add some values to SwerveX
 import frc.lib.util.SwerveModuleConstants;
 
 public final class Constants {
     public static final double stickDeadband = 0.1;
 
     public static final class Swerve {
-        // public static final int pigeonID = 1; // Not needed
+        public static final int pigeonID = 1; // TODO: Set to NavX
 
 
-        public static final boolean invertGyro = true; // Always ensure Gyro is CCW+ CW-// TODO: Set to true/false
+        public static final boolean invertGyro = true; // Always ensure Gyro is CCW+ CW-// Done
 
 
 
@@ -45,24 +45,22 @@ public final class Constants {
 
 
 
-        
-
-        // Need to set all these values
+        // Most of these should be presets found in the COTS module
 
         /* Module Gear Ratios */
-        public static final double driveGearRatio = (6/55); // Done, from drive gear ratio in email
-        public static final double angleGearRatio = (10.29/1); //Done, from steering ratio email
+        public static final double driveGearRatio = (6.55/1); // Done Set value
+        public static final double angleGearRatio = (10.29/1); // Done Set value
 
 
 
         /* Motor Inverts */
-        public static final boolean angleMotorInvert = chosenModule.angleMotorInvert;// TODO
-        public static final boolean driveMotorInvert = false; // Done, currently set to false on basis of instructions
+        public static final boolean angleMotorInvert = true; // Done, set
+        public static final boolean driveMotorInvert = false; // Done, set
 
 
 
         /* Angle Encoder Invert */
-        public static final boolean canCoderInvert = chosenModule.canCoderInvert; // TODO
+        public static final boolean canCoderInvert = false; // Done, set
 
 
 
@@ -89,10 +87,10 @@ public final class Constants {
 
 
         /* Angle Motor PID Values */
-        public static final double angleKP = chosenModule.angleKP; // TODO: Set all these
-        public static final double angleKI = chosenModule.angleKI;
-        public static final double angleKD = chosenModule.angleKD;
-        public static final double angleKF = chosenModule.angleKF;
+        public static final double angleKP = 0.3; // Done, set value
+        public static final double angleKI = 0.0; // Done, set value
+        public static final double angleKD = 0.0; // Done, set value
+        public static final double angleKF = 0.0; // Done, set value
 
 
 
@@ -112,12 +110,12 @@ public final class Constants {
 
         /* Swerve Profiling Values */
         /** Meters per Second */
-        public static final double maxSpeed = 4.5; //TODO: This must be tuned to specific robot
+        public static final double maxSpeed = 4.5; // Done, Set value
 
 
 
         /** Radians per Second */
-        public static final double maxAngularVelocity = 10.0; //TODO: This must be tuned to specific robot
+        public static final double maxAngularVelocity = 10.0; //Done, set value
 
 
 
