@@ -1,6 +1,3 @@
-[submodule "TrcCommonLib"]
-	path = TrcCommonLib
-	url = https://github.com/trc492/TrcCommonLib
-[submodule "TrcFrcLib"]
-	path = TrcFrcLib
+[submodule "src/main/java/frc/TrcFrcLib"]
+	path = src/main/java/frc/TrcFrcLib
 	url = https://github.com/trc492/TrcFrcLib
