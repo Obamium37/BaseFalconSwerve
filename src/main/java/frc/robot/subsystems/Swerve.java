@@ -12,7 +12,7 @@ import com.ctre.phoenix.sensors.Pigeon2;
 
 
 
-import TrcCommonLib.trclib.TrcGyro;
+import frc.TrcCommonLib.trclib.TrcGyro;
 import edu.wpi.first.math.geometry.Pose2d;
 import edu.wpi.first.math.geometry.Rotation2d;
 import edu.wpi.first.math.geometry.Translation2d;
@@ -42,7 +42,7 @@ public class Swerve extends SubsystemBase {
         //gyro.configFactoryDefault();
         zeroGyro();
 
-        // TODO: Put these constants value into the robotParams
+       
 
         mSwerveMods = new SwerveModule[] {
 
