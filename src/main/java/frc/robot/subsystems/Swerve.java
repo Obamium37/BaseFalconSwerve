@@ -12,8 +12,7 @@ import com.ctre.phoenix.sensors.Pigeon2;
 
 
 
-import frc.TrcCommonLib.trclib.TrcGyro;
-import TrcFrcLib.frclib.FrcAHRSGyro;
+import com.kauailabs.navx.frc.AHRS;
 import edu.wpi.first.math.geometry.Pose2d;
 import edu.wpi.first.math.geometry.Rotation2d;
 import edu.wpi.first.math.geometry.Translation2d;
@@ -22,23 +21,24 @@ import edu.wpi.first.wpilibj.SPI;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import edu.wpi.first.wpilibj.SPI.Port;
 
 public class Swerve extends SubsystemBase {
     public SwerveDriveOdometry swerveOdometry;
     public SwerveModule[] mSwerveMods;
     //public Pigeon2 gyro;
 
-    public final TrcGyro gyro;
+    public AHRS ahrs;
  
     
  
 
     public Swerve() {
 
-        // TODO: Replace with NavX gyro
-        //gyro = new Pigeon2(Constants.Swerve.pigeonID);
         
-        gyro = new FrcAHRSGyro("NavX", SPI.Port.kMXP);
+   
+        
+        this.ahrs = new AHRS(SPI.Port.kMXP);
 
         //gyro.configFactoryDefault();
         zeroGyro();
@@ -118,11 +118,11 @@ public class Swerve extends SubsystemBase {
     }
 
     public void zeroGyro(){
-        gyro.setYaw(0);
+        ahrs.reset();
     }
 
     public Rotation2d getYaw() {
-        return (Constants.Swerve.invertGyro) ? Rotation2d.fromDegrees(360 - gyro.getYaw()) : Rotation2d.fromDegrees(gyro.getYaw());
+        return (Constants.Swerve.invertGyro) ? Rotation2d.fromDegrees(360 - ahrs.getYaw()) : Rotation2d.fromDegrees(ahrs.getYaw());
     }
 
     public void resetModulesToAbsolute(){

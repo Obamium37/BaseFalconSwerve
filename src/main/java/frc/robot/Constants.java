@@ -14,7 +14,7 @@ public final class Constants {
     public static final double stickDeadband = 0.1;
 
     public static final class Swerve {
-       // public static final int pigeonID = 1; // TODO: Set to NavX
+       // public static final int pigeonID = 1; 
 
 
         public static final boolean invertGyro = true; // Always ensure Gyro is CCW+ CW-// Done
@@ -95,7 +95,7 @@ public final class Constants {
 
 
         /* Drive Motor PID Values */
-        public static final double driveKP = 0.05; //TODO: This must be tuned to specific robot
+        public static final double driveKP = 1.0; //TODO: This must be tuned to specific robot
         public static final double driveKI = 0.0; // Leave rest at 0.0
         public static final double driveKD = 0.0;
         public static final double driveKF = 0.0;
@@ -133,10 +133,10 @@ public final class Constants {
             public static final int driveMotorID = 3; // Done, from CANID_LEFTFRONT_DRIVE  
 
 
-            public static final int angleMotorID = 7; 
+            public static final int angleMotorID = 13; 
 
             
-            public static final int canCoderID = 13; // Done, from CANID_LEFTFRONT_STEER
+            public static final int canCoderID = 7; // Done, from CANID_LEFTFRONT_STEER
             public static final Rotation2d angleOffset = Rotation2d.fromDegrees(0.0); // TODO: Get angle offset
             public static final SwerveModuleConstants constants = 
                 new SwerveModuleConstants(driveMotorID, angleMotorID, canCoderID, angleOffset);
@@ -149,10 +149,10 @@ public final class Constants {
             public static final int driveMotorID = 4;  //Done, from CANID_RIGHTFRONT_DRIVE  
 
 
-            public static final int angleMotorID = 8;
+            public static final int angleMotorID = 14;
 
 
-            public static final int canCoderID = 14; // Done, from CANID_RIGHTFRONT_STEER  
+            public static final int canCoderID = 8; // Done, from CANID_RIGHTFRONT_STEER  
             public static final Rotation2d angleOffset = Rotation2d.fromDegrees(0.0); // TODO: Get angle offset
             public static final SwerveModuleConstants constants = 
                 new SwerveModuleConstants(driveMotorID, angleMotorID, canCoderID, angleOffset);
@@ -165,9 +165,9 @@ public final class Constants {
 
             public static final int driveMotorID = 5;  //Done, from CANID_LEFTBACK_DRIVE  
 
-            public static final int angleMotorID = 9;
+            public static final int angleMotorID = 15;
 
-            public static final int canCoderID = 15; // Done, from CANID_LEFTBACK_STEER  
+            public static final int canCoderID = 9; // Done, from CANID_LEFTBACK_STEER  
 
             public static final Rotation2d angleOffset = Rotation2d.fromDegrees(0.0); // TODO: Get angle offset
             public static final SwerveModuleConstants constants = 
@@ -179,9 +179,9 @@ public final class Constants {
 
             public static final int driveMotorID = 6; //Done, from CANID_RIGHTBACK_DRIVE 
 
-            public static final int angleMotorID = 10;
+            public static final int angleMotorID = 16;
 
-            public static final int canCoderID = 16;  // Done from CANID_RIGHTBACK_STEER 
+            public static final int canCoderID = 10;  // Done from CANID_RIGHTBACK_STEER_ENCODER
 
             public static final Rotation2d angleOffset = Rotation2d.fromDegrees(0.0); // TODO: Get angle offset
 
