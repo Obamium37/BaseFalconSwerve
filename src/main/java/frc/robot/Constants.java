@@ -48,8 +48,8 @@ public final class Constants {
         // Most of these should be presets found in the COTS module
 
         /* Module Gear Ratios */
-        public static final double driveGearRatio = (6.55/1); // Done Set value
-        public static final double angleGearRatio = (10.29/1); // Done Set value
+        public static final double driveGearRatio = (6.55/1.0); // Done Set value
+        public static final double angleGearRatio = (10.29/1.0); // Done Set value
 
 
 
