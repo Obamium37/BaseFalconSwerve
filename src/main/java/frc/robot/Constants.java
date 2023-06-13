@@ -130,13 +130,13 @@ public final class Constants {
         /* Module Specific Constants */
         /* Front Left Module - Module 0 */
         public static final class lfConsts { 
-            public static final int driveMotorID = 3; // Done, from CANID_LEFTFRONT_DRIVE  
+            public static final int driveMotorID = 3; // Done, from CANID_LEFTFRONT_DRIVE  // 3
 
 
-            public static final int angleMotorID = 13; 
+            public static final int angleMotorID = 13; // 13, from CANID_LEFTFRONT_STEER
 
             
-            public static final int canCoderID = 7; // Done, from CANID_LEFTFRONT_STEER
+            public static final int canCoderID = 23;  // 7
             public static final Rotation2d angleOffset = Rotation2d.fromDegrees(349.37); 
             public static final SwerveModuleConstants constants = 
                 new SwerveModuleConstants(driveMotorID, angleMotorID, canCoderID, angleOffset);
@@ -146,13 +146,13 @@ public final class Constants {
 
         /* Front Right Module - Module 1 */
         public static final class rfConsts { 
-            public static final int driveMotorID = 4;  //Done, from CANID_RIGHTFRONT_DRIVE  
+            public static final int driveMotorID = 4;  //Done, from CANID_RIGHTFRONT_DRIVE  // 4
 
 
-            public static final int angleMotorID = 14;
+            public static final int angleMotorID = 14; // 14 from CANID_LEFTFRONT_STEER
 
 
-            public static final int canCoderID = 8; // Done, from CANID_RIGHTFRONT_STEER  
+            public static final int canCoderID = 24;  // 8
             public static final Rotation2d angleOffset = Rotation2d.fromDegrees(210.06); 
             public static final SwerveModuleConstants constants = 
                 new SwerveModuleConstants(driveMotorID, angleMotorID, canCoderID, angleOffset);
@@ -163,11 +163,11 @@ public final class Constants {
         /* Back Left Module - Module 2 */
         public static final class lbConsts {
 
-            public static final int driveMotorID = 5;  //Done, from CANID_LEFTBACK_DRIVE  
+            public static final int driveMotorID = 5;  //Done, from CANID_LEFTBACK_DRIVE  // 5
 
-            public static final int angleMotorID = 15;
+            public static final int angleMotorID = 15; //15, from CANID_LEFTFRONT_STEER
 
-            public static final int canCoderID = 9; // Done, from CANID_LEFTBACK_STEER  
+            public static final int canCoderID = 25;  // 9
 
             public static final Rotation2d angleOffset = Rotation2d.fromDegrees(75.94); 
             public static final SwerveModuleConstants constants = 
@@ -177,11 +177,11 @@ public final class Constants {
         /* Back Right Module - Module 3 */
         public static final class rbConsts { 
 
-            public static final int driveMotorID = 6; //Done, from CANID_RIGHTBACK_DRIVE 
+            public static final int driveMotorID = 6; //Done, from CANID_RIGHTBACK_DRIVE // 6
 
-            public static final int angleMotorID = 16;
+            public static final int angleMotorID = 16; // 16, from CANID_LEFTFRONT_STEER
 
-            public static final int canCoderID = 10;  // Done from CANID_RIGHTBACK_STEER_ENCODER
+            public static final int canCoderID = 26;  //10
 
             public static final Rotation2d angleOffset = Rotation2d.fromDegrees(233.61); 
 
