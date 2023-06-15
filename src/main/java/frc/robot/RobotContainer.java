@@ -24,7 +24,7 @@ import com.pathplanner.lib.PathPlanner;
 import com.pathplanner.lib.PathPlannerTrajectory;
 import com.pathplanner.lib.commands.PPSwerveControllerCommand;
 
-import frc.robot.autos.*;
+//import frc.robot.autos.*;
 import frc.robot.commands.*;
 import frc.robot.subsystems.*;
 
@@ -75,7 +75,7 @@ public class RobotContainer {
 
         chooser.addOption("Auto_Path", followTrajectoryCommand("Auto_Path", true));
 
-        Shuffleboard.getTab("Auto").add(chooser);
+        Shuffleboard.getTab("Autonomous").add(chooser);
 
         
     }
