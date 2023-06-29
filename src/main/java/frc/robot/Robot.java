@@ -4,9 +4,15 @@
 
 package frc.robot;
 
+import com.kauailabs.navx.frc.AHRS;
+
 import edu.wpi.first.wpilibj.TimedRobot;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
+import frc.robot.subsystems.Swerve;
+import edu.wpi.first.math.geometry.Pose2d;
+import edu.wpi.first.wpilibj.SPI;
 
 /**
  * The VM is configured to automatically run this class, and to call the functions corresponding to
@@ -20,6 +26,14 @@ public class Robot extends TimedRobot {
   private Command m_autonomousCommand;
 
   private RobotContainer m_robotContainer;
+  public AHRS ahrs =new AHRS(SPI.Port.kMXP);
+
+  public int counter = 0;
+
+  Pose2d new_pose = new Pose2d();
+
+  //Swerve s_Swerve = new Swerve();
+
 
   /**
    * This function is run when the robot is first started up and should be used for any
@@ -54,7 +68,17 @@ public class Robot extends TimedRobot {
   public void disabledInit() {}
 
   @Override
-  public void disabledPeriodic() {}
+  public void disabledPeriodic() {
+    if(ahrs != null)
+    {
+      //counter += 1;
+      SmartDashboard.putNumber("Raw Gyro", ahrs.getYaw());
+      
+    } else{
+      SmartDashboard.putString("Raw Gyro", "Unavailable");
+    }
+
+  }
 
   /** This autonomous runs the autonomous command selected by your {@link RobotContainer} class. */
   @Override
@@ -69,7 +93,18 @@ public class Robot extends TimedRobot {
 
   /** This function is called periodically during autonomous. */
   @Override
-  public void autonomousPeriodic() {}
+  public void autonomousPeriodic() {
+
+    if(ahrs != null){
+
+      SmartDashboard.putNumber("Raw Gyro", ahrs.getYaw());
+
+
+
+    } else{
+      SmartDashboard.putString("Raw Gyro", "Unavailable");
+    }
+  }
 
   @Override
   public void teleopInit() {
@@ -80,11 +115,16 @@ public class Robot extends TimedRobot {
     if (m_autonomousCommand != null) {
       m_autonomousCommand.cancel();
     }
+    m_robotContainer.s_Swerve.resetOdometry(new_pose);
   }
 
   /** This function is called periodically during operator control. */
   @Override
-  public void teleopPeriodic() {}
+  public void teleopPeriodic() {
+
+    SmartDashboard.putNumber("Pose X", m_robotContainer.s_Swerve.getPose().getX());
+    SmartDashboard.putNumber("Pose Y", m_robotContainer.s_Swerve.getPose().getY());
+  }
 
   @Override
   public void testInit() {

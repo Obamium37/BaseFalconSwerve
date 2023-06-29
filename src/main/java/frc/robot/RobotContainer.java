@@ -5,6 +5,7 @@ package frc.robot;
 // import java.util.List;
 
 import edu.wpi.first.math.controller.PIDController;
+import edu.wpi.first.math.geometry.Pose2d;
 // import edu.wpi.first.math.trajectory.Trajectory;
 // import edu.wpi.first.math.trajectory.TrajectoryUtil;
 // import edu.wpi.first.util.sendable.Sendable;
@@ -14,16 +15,20 @@ import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
+
+import javax.swing.text.StyleContext.SmallAttributeSet;
 
 import com.pathplanner.lib.PathConstraints;
 import com.pathplanner.lib.PathPlanner;
 import com.pathplanner.lib.PathPlannerTrajectory;
 import com.pathplanner.lib.commands.PPSwerveControllerCommand;
 
+import frc.robot.autos.exampleAuto;
 //import frc.robot.autos.*;
 import frc.robot.commands.*;
 import frc.robot.subsystems.*;
@@ -51,10 +56,10 @@ public class RobotContainer {
 
     /* Subsystems */
     
-    private final Swerve s_Swerve = new Swerve();
+    public final Swerve s_Swerve = new Swerve();
 
 
-    SendableChooser<Command> chooser = new SendableChooser<>();
+    //SendableChooser<Command> chooser = new SendableChooser<>();
 
 
 
@@ -73,15 +78,49 @@ public class RobotContainer {
         // Configure the button bindings
         configureButtonBindings();
 
-        chooser.addOption("Auto_Path", followTrajectoryCommand("Auto_Path", true));
+        //chooser.addOption("Auto_Path", followTrajectoryCommand("Auto_Path", true));
 
-        Shuffleboard.getTab("Autonomous").add(chooser);
+        //Shuffleboard.getTab("Autonomous").add(chooser);
 
+        
+        Pose2d pose = s_Swerve.getPose();
+
+        //s_Swerve.resetOdometry(pose);
+
+        //Shuffleboard.getTab("Autonomous").addString("Current Command: ", this::getCommandName);
+
+
+     
+
+        
+
+        
         
     }
 
 
+    // private String getCommandName(){
+
+
+    //     Command command = s_Swerve.getCurrentCommand();
+
+        
+    //     System.out.println(command == null?"Unavailable":command.getName());
+
+    //     return command == null?"Unavailable":command.getName();
+
+        
+
+    // }
+
+   
     
+
+
+
+
+
+
 
     /**
      * Use this method to define your button->command mappings. Buttons can be created by
@@ -97,32 +136,32 @@ public class RobotContainer {
 
     // Assuming this method is part of a drivetrain subsystem that provides the necessary methods
 
-    public Command followTrajectoryCommand(String name, boolean isFirstPath) {
+    // public Command followTrajectoryCommand(String name, boolean isFirstPath) {
 
-        PathPlannerTrajectory traj = PathPlanner.loadPath(name, new PathConstraints(4, 3));
+    //     PathPlannerTrajectory traj = PathPlanner.loadPath(name, new PathConstraints(4, 3));
         
 
 
-        return new SequentialCommandGroup(
-            new InstantCommand(() -> {
-              // Reset odometry for the first path you run during auto
-              if(isFirstPath){
-                  s_Swerve.resetOdometry(traj.getInitialHolonomicPose());
-              }
-            }),
-            new PPSwerveControllerCommand(
-                traj, 
-                s_Swerve::getPose, // Pose supplier
-                Constants.Swerve.swerveKinematics, // SwerveDriveKinematics
-                new PIDController(0, 0, 0), // X controller. Tune these values for your robot. Leaving them 0 will only use feedforwards.
-                new PIDController(0, 0, 0), // Y controller (usually the same values as X controller)
-                new PIDController(0, 0, 0), // Rotation controller. Tune these values for your robot. Leaving them 0 will only use feedforwards.
-                s_Swerve::setModuleStates, // Module states consumer
-                true, // Should the path be automatically mirrored depending on alliance color. Optional, defaults to true
-                s_Swerve // Requires this drive subsystem
-            )
-        );
-    }
+    //     return new SequentialCommandGroup(
+    //         new InstantCommand(() -> {
+    //           // Reset odometry for the first path you run during auto
+    //           if(isFirstPath){
+    //               s_Swerve.resetOdometry(traj.getInitialHolonomicPose());
+    //           }
+    //         }),
+    //         new PPSwerveControllerCommand(
+    //             traj, 
+    //             s_Swerve::getPose, // Pose supplier
+    //             Constants.Swerve.swerveKinematics, // SwerveDriveKinematics
+    //             new PIDController(0, 0, 0), // X controller. Tune these values for your robot. Leaving them 0 will only use feedforwards.
+    //             new PIDController(0, 0, 0), // Y controller (usually the same values as X controller)
+    //             new PIDController(0, 0, 0), // Rotation controller. Tune these values for your robot. Leaving them 0 will only use feedforwards.
+    //             s_Swerve::setModuleStates, // Module states consumer
+    //             true, // Should the path be automatically mirrored depending on alliance color. Optional, defaults to true
+    //             s_Swerve // Requires this drive subsystem
+    //         )
+    //     );
+    // }
 
     
 
@@ -133,6 +172,7 @@ public class RobotContainer {
      */
     public Command getAutonomousCommand() {
 
-        return chooser.getSelected();
+        //return chooser.getSelected();
+        return new exampleAuto(s_Swerve);
     }
 }
