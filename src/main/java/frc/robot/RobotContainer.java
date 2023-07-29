@@ -59,7 +59,7 @@ public class RobotContainer {
     public final Swerve s_Swerve = new Swerve();
 
 
-    //SendableChooser<Command> chooser = new SendableChooser<>();
+    SendableChooser<Command> chooser = new SendableChooser<>();
 
 
 
@@ -74,20 +74,25 @@ public class RobotContainer {
                 () -> robotCentric.getAsBoolean()
             )
         );
+    
 
         // Configure the button bindings
         configureButtonBindings();
 
-        //chooser.addOption("Auto_Path", followTrajectoryCommand("Auto_Path", true));
+        chooser.addOption("Auto_Path", followTrajectoryCommand("Auto_Path", true));
 
-        //Shuffleboard.getTab("Autonomous").add(chooser);
+        Shuffleboard.getTab("Autonomous").add(chooser);
 
         
         Pose2d pose = s_Swerve.getPose();
 
-        //s_Swerve.resetOdometry(pose);
+        s_Swerve.resetOdometry(pose);
 
         //Shuffleboard.getTab("Autonomous").addString("Current Command: ", this::getCommandName);
+
+
+
+        
 
 
      
@@ -136,32 +141,32 @@ public class RobotContainer {
 
     // Assuming this method is part of a drivetrain subsystem that provides the necessary methods
 
-    // public Command followTrajectoryCommand(String name, boolean isFirstPath) {
+    public Command followTrajectoryCommand(String name, boolean isFirstPath) {
 
-    //     PathPlannerTrajectory traj = PathPlanner.loadPath(name, new PathConstraints(4, 3));
+        PathPlannerTrajectory traj = PathPlanner.loadPath(name, new PathConstraints(4, 3));
         
 
 
-    //     return new SequentialCommandGroup(
-    //         new InstantCommand(() -> {
-    //           // Reset odometry for the first path you run during auto
-    //           if(isFirstPath){
-    //               s_Swerve.resetOdometry(traj.getInitialHolonomicPose());
-    //           }
-    //         }),
-    //         new PPSwerveControllerCommand(
-    //             traj, 
-    //             s_Swerve::getPose, // Pose supplier
-    //             Constants.Swerve.swerveKinematics, // SwerveDriveKinematics
-    //             new PIDController(0, 0, 0), // X controller. Tune these values for your robot. Leaving them 0 will only use feedforwards.
-    //             new PIDController(0, 0, 0), // Y controller (usually the same values as X controller)
-    //             new PIDController(0, 0, 0), // Rotation controller. Tune these values for your robot. Leaving them 0 will only use feedforwards.
-    //             s_Swerve::setModuleStates, // Module states consumer
-    //             true, // Should the path be automatically mirrored depending on alliance color. Optional, defaults to true
-    //             s_Swerve // Requires this drive subsystem
-    //         )
-    //     );
-    // }
+        return new SequentialCommandGroup(
+            new InstantCommand(() -> {
+              // Reset odometry for the first path you run during auto
+              if(isFirstPath){
+                  s_Swerve.resetOdometry(traj.getInitialHolonomicPose());
+              }
+            }),
+            new PPSwerveControllerCommand(
+                traj, 
+                s_Swerve::getPose, // Pose supplier
+                Constants.Swerve.swerveKinematics, // SwerveDriveKinematics
+                new PIDController(Constants.AutoConstants.kPXController, 0, 0), // X controller. Tune these values for your robot. Leaving them 0 will only use feedforwards.
+                new PIDController(Constants.AutoConstants.kPYController, 0, 0), // Y controller (usually the same values as X controller)
+                new PIDController(Constants.AutoConstants.kPThetaController, 0, 0), // Rotation controller. Tune these values for your robot. Leaving them 0 will only use feedforwards.
+                s_Swerve::setModuleStates, // Module states consumer
+                true, // Should the path be automatically mirrored depending on alliance color. Optional, defaults to true
+                s_Swerve // Requires this drive subsystem
+            )
+        );
+    }
 
     
 
@@ -172,7 +177,7 @@ public class RobotContainer {
      */
     public Command getAutonomousCommand() {
 
-        //return chooser.getSelected();
-        return new exampleAuto(s_Swerve);
+        return chooser.getSelected();
+        //return new exampleAuto(s_Swerve);
     }
 }
