@@ -7,6 +7,7 @@ package frc.robot;
 import com.kauailabs.navx.frc.AHRS;
 
 import edu.wpi.first.wpilibj.TimedRobot;
+import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
@@ -89,6 +90,7 @@ public class Robot extends TimedRobot {
     if (m_autonomousCommand != null) {
       m_autonomousCommand.schedule();
     }
+    m_robotContainer.s_Swerve.resetOdometry(new_pose);
   }
 
   /** This function is called periodically during autonomous. */
@@ -104,6 +106,16 @@ public class Robot extends TimedRobot {
     } else{
       SmartDashboard.putString("Raw Gyro", "Unavailable");
     }
+
+    SmartDashboard.putNumber("Pose X", m_robotContainer.s_Swerve.getPose().getX());
+
+
+    if(m_robotContainer.s_Swerve.getCurrentCommand() == null){
+      SmartDashboard.putString("Current Command", "Unavailable");
+
+    } else{
+      SmartDashboard.putString("Current Command", m_robotContainer.s_Swerve.getCurrentCommand().getName());
+    }
   }
 
   @Override
@@ -116,6 +128,7 @@ public class Robot extends TimedRobot {
       m_autonomousCommand.cancel();
     }
     m_robotContainer.s_Swerve.resetOdometry(new_pose);
+
   }
 
   /** This function is called periodically during operator control. */
@@ -124,6 +137,12 @@ public class Robot extends TimedRobot {
 
     SmartDashboard.putNumber("Pose X", m_robotContainer.s_Swerve.getPose().getX());
     SmartDashboard.putNumber("Pose Y", m_robotContainer.s_Swerve.getPose().getY());
+
+    //SmartDashboard.putNumber("Raw Gyro", ahrs.getYaw());
+
+   
+
+    
   }
 
   @Override

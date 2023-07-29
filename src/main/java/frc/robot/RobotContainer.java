@@ -75,17 +75,27 @@ public class RobotContainer {
                 () -> robotCentric.getAsBoolean()
             )
         );
-        
+    
+
         // Configure the button bindings
         configureButtonBindings();
-
-        
 
         chooser.addOption("Auto_Path", followTrajectoryCommand("Auto_Path", true));
 
         Shuffleboard.getTab("Autonomous").add(chooser);
 
-        Shuffleboard.getTab("Autonomous").add("Current Command", s_Swerve.getCurrentCommand());
+        
+
+        s_Swerve.resetOdometry(pose);
+
+        //Shuffleboard.getTab("Autonomous").addString("Current Command: ", this::getCommandName);
+
+
+
+        
+
+
+     
 
         
         //Shuffleboard.getTab("Autnomous").addString("Current Command", s_Swerve.getCurrentCommand());
@@ -118,6 +128,8 @@ public class RobotContainer {
         
 
 
+    
+
         return new SequentialCommandGroup(
             new InstantCommand(() -> {
               // Reset odometry for the first path you run during auto
@@ -129,21 +141,15 @@ public class RobotContainer {
                 traj, 
                 s_Swerve::getPose, // Pose supplier
                 Constants.Swerve.swerveKinematics, // SwerveDriveKinematics
-                new PIDController(0, 0, 0), // X controller. Tune these values for your robot. Leaving them 0 will only use feedforwards.
-                new PIDController(0, 0, 0), // Y controller (usually the same values as X controller)
-                new PIDController(0, 0, 0), // Rotation controller. Tune these values for your robot. Leaving them 0 will only use feedforwards.
+                new PIDController(Constants.AutoConstants.kPXController, 0, 0), // X controller. Tune these values for your robot. Leaving them 0 will only use feedforwards.
+                new PIDController(Constants.AutoConstants.kPYController, 0, 0), // Y controller (usually the same values as X controller)
+                new PIDController(Constants.AutoConstants.kPThetaController, 0, 0), // Rotation controller. Tune these values for your robot. Leaving them 0 will only use feedforwards.
                 s_Swerve::setModuleStates, // Module states consumer
                 true, // Should the path be automatically mirrored depending on alliance color. Optional, defaults to true
                 s_Swerve // Requires this drive subsystem
             )
         );
     }
-
-
-    
-
-    
-
 
     
 
@@ -155,5 +161,6 @@ public class RobotContainer {
     public Command getAutonomousCommand() {
 
         return chooser.getSelected();
+        //return new exampleAuto(s_Swerve);
     }
 }
