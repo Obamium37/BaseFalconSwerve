@@ -1,0 +1,3 @@
+[submodule "TrcCommonLib"]
+	path = TrcCommonLib
+	url = https://github.com/trc492/TrcCommonLib

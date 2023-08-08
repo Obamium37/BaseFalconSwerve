@@ -28,6 +28,7 @@ import com.pathplanner.lib.auto.SwerveAutoBuilder;
 import com.pathplanner.lib.commands.FollowPathWithEvents;
 import com.pathplanner.lib.commands.PPSwerveControllerCommand;
 
+import frc.robot.autos.exampleAuto;
 //import frc.robot.autos.*;
 import frc.robot.commands.*;
 import frc.robot.subsystems.*;
@@ -86,7 +87,7 @@ public class RobotContainer {
 
         
 
-        s_Swerve.resetOdometry(pose);
+       
 
         //Shuffleboard.getTab("Autonomous").addString("Current Command: ", this::getCommandName);
 
@@ -160,7 +161,7 @@ public class RobotContainer {
      */
     public Command getAutonomousCommand() {
 
-        return chooser.getSelected();
-        //return new exampleAuto(s_Swerve);
+        //return chooser.getSelected();
+        return new exampleAuto(s_Swerve);
     }
 }
